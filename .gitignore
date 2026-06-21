@@ -1,0 +1,32 @@
+# Python/cache
+__pycache__/
+*.py[cod]
+.pytest_cache/
+
+# Local environments
+.env
+.venv/
+venv/
+
+# Generated training/evaluation artifacts
+PDE_inverse/checkpoints/
+PDE_inverse/datasets/
+PDE_inverse/outputs/
+Regression/checkpoints/
+Regression/datasets/
+Regression/outputs/
+
+# Large model/data artifacts
+*.pt
+*.pth
+*.ckpt
+*.npy
+*.npz
+
+# Plot/log outputs
+*.pdf
+*.png
+*.csv
+
+# OS/editor
+.DS_Store
