@@ -12,13 +12,23 @@ This GitHub repository contains the training/evaluation code and shell scripts.
 
 ## Setup
 
-Clone the repository and install the main Python dependencies in your environment:
+Clone the repository:
 
 ```bash
 git clone https://github.com/yzshi5/FAPS.git
 cd FAPS
+```
 
-pip install -U torch numpy scipy matplotlib huggingface_hub torchdiffeq
+Create the conda environment:
+
+```bash
+conda env create -f environment.yml
+```
+
+Activate the `faps` environment:
+
+```bash
+conda activate faps
 ```
 
 Some MINO/weather experiments also require the MINO model utilities included in this repo.
