@@ -10,7 +10,8 @@ venv/
 
 # Generated training/evaluation artifacts
 PDE_inverse/checkpoints/
-PDE_inverse/datasets/
+PDE_inverse/datasets/*
+!PDE_inverse/datasets/*.py
 PDE_inverse/outputs/
 Regression/checkpoints/
 Regression/datasets/

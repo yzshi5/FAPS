@@ -12,22 +12,15 @@ This GitHub repository contains the training/evaluation code and shell scripts.
 
 ## Setup
 
-Clone the repository:
-
 ```bash
+# clone project
 git clone https://github.com/yzshi5/FAPS.git
 cd FAPS
-```
 
-Create the conda environment:
-
-```bash
+# create conda environment
 conda env create -f environment.yml
-```
 
-Activate the `faps` environment:
-
-```bash
+# Activate the `faps` environment
 conda activate faps
 ```
 
@@ -68,6 +61,20 @@ For the original PDE train/test data, you can also use:
 ```bash
 cd PDE_inverse
 python datasets/download_dataset.py all --output-dir datasets/PDE_inverse
+```
+
+The helper Python files for downloading and preprocessing the full PDE datasets are also available under:
+
+```text
+https://huggingface.co/Yaozhong/FAPS/tree/main/PDE_inverse/datasets
+```
+
+After downloading the Hugging Face Arrow shards, convert them to `.npy` files with:
+
+```bash
+python datasets/inital_process.py \
+  --input-root datasets/PDE_inverse \
+  --output-root datasets/PDE_inverse_npy
 ```
 
 To download test files only:
