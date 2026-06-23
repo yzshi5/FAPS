@@ -1,6 +1,7 @@
-# FAPS
 
-Code for **Flow Annealing Posterior Sampling for Function-Space Regression and Inverse Problems**.
+# Flow Annealing Posterior Sampling for Function-Space Regression and Inverse Problems
+### [FAPS Paper](https://arxiv.org/abs/2606.22346)
+
 
 Large checkpoints and prepared datasets are stored on Hugging Face:
 
