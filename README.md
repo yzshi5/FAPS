@@ -65,17 +65,6 @@ snapshot_download(
 )
 PY
 ```
-## Quick Test 
-
-To reproduce, simplify run download the... 
-
-
-## Run FAPS for Functional Regression 
-
-
-## Run FAPS for PDE Inverse 
-
-
 
 For the original PDE train/test data, you can also use:
 
@@ -103,104 +92,79 @@ To download test files only:
 ```bash
 python datasets/download_dataset.py all --test --output-dir datasets/PDE_inverse
 ```
+## Quick Test 
 
-## PDE Inverse Problems
+To reproduce the results of GP regression, first download, then simplify 
+
+```bash
+cd Regression
+bash scripts/eval_GP_matern_reg.sh
+```
+
+To reproduce the results of Darcy Flow PDE inverse, first download, then simplify 
+
+```bash
+cd PDE_inverse
+bash scripts/eval_darcy_inverse.sh
+```
+
+## Run FAPS for Functional Regression 
+
+
+## Run FAPS for PDE Inverse 
+
 
 All commands below are run from:
 
 ```bash
 cd PDE_inverse
 ```
-
-### Train FNO Forward Surrogates
-
-```bash
-bash scripts_surrogate/train_darcy_FNO.sh
-bash scripts_surrogate/train_poisson_FNO.sh
-bash scripts_surrogate/train_helmholtz_FNO.sh
-bash scripts_surrogate/train_ns_FNO.sh
-```
-
-Evaluate the surrogate:
-
-```bash
-bash scripts_surrogate/eval_darcy_FNO.sh
-bash scripts_surrogate/eval_poisson_FNO.sh
-bash scripts_surrogate/eval_helmholtz_FNO.sh
-bash scripts_surrogate/eval_ns_FNO.sh
-```
-
-### Train FAPS Priors
-
-FNO prior:
-
-```bash
-bash scripts/train_darcy_prior.sh
-bash scripts/train_poisson_prior.sh
-bash scripts/train_helmholtz_prior.sh
-bash scripts/train_ns_prior.sh
-```
-
-UNet prior:
-
-```bash
-bash scripts/train_darcy_prior_unet.sh
-bash scripts/train_poisson_prior_unet.sh
-bash scripts/train_helmholtz_prior_unet.sh
-bash scripts/train_ns_prior_unet.sh
-```
-
-### Run Inverse Evaluation
-
-FNO prior:
-
-```bash
-bash scripts/eval_darcy_inverse.sh
-bash scripts/eval_poisson_inverse.sh
-bash scripts/eval_helmholtz_inverse.sh
-bash scripts/eval_ns_inverse.sh
-```
-
-UNet prior:
-
-```bash
-bash scripts/eval_darcy_inverse_unet.sh
-bash scripts/eval_poisson_inverse_unet.sh
-bash scripts/eval_helmholtz_inverse_unet.sh
-bash scripts/eval_ns_inverse_unet.sh
-```
-
-Darcy super-resolution inverse evaluation:
-
-```bash
-bash scripts/eval_darcy_inverse_sup.sh
-```
-
-### Run All-Test Metrics
-
-FNO prior:
-
-```bash
-bash scripts_metrics/eval_darcy_inverse_all_test.sh
-bash scripts_metrics/eval_poisson_inverse_all_test.sh
-bash scripts_metrics/eval_helmholtz_inverse_all_test.sh
-bash scripts_metrics/eval_ns_inverse_all_test.sh
-```
-
-UNet prior:
-
-```bash
-bash scripts_metrics/eval_darcy_inverse_all_test_unet.sh
-bash scripts_metrics/eval_poisson_inverse_all_test_unet.sh
-bash scripts_metrics/eval_helmholtz_inverse_all_test_unet.sh
-bash scripts_metrics/eval_ns_inverse_all_test_unet.sh
-```
-
 PDE inverse outputs are written under:
 
 ```text
 PDE_inverse/outputs/
 ```
+
+In the following steps, we take Darcy Flow PDE inverse problem as an example. The pipeline is the same for other PDE problem. 
+
+#### 1. Train and evaluate FNO Forward Surrogates
+The first step is to train the FNO forward surrogate, you can also replace FNO with other PDE surrogate, like Transolver, GAOT etc or just a differentiable PDE solver 
+
+```bash
+bash scripts_surrogate/train_darcy_FNO.sh
+bash scripts_surrogate/eval_darcy_FNO.sh
+```
+
+#### 2. Train FAPS Priors
+After we get the trained forward surrogate, we can train the Flow Matching priors for FAPS. In this study, we test both function-space prior (FNO prior) and standard finite-dimensional prior (UNet prior). The results show the backward compatibility of FAPS
+
+```bash
+bash scripts/train_darcy_prior.sh
+bash scripts/train_darcy_prior_unet.sh
+```
+#### 3. Run Inverse Evaluation
+
+Then run single-case evaluation with FNO or UNet prior 
+
+```bash
+bash scripts/eval_darcy_inverse.sh
+bash scripts/eval_darcy_inverse_unet.sh
+```
+
+When use FNO prior, the entire formulation is built on function space, we can do zero-shot inference for PDE inverse problem. Darcy super-resolution inverse evaluation:
+
+```bash
+bash scripts/eval_darcy_inverse_sup.sh
+```
+#### 4. Reproduce the reported performance 
+
+We need to run FAPS over the entire test datasets, each test dataset in the paper contains 100 test cases. 
+
+```bash
+bash scripts_metrics/eval_darcy_inverse_all_test.sh
+bash scripts_metrics/eval_darcy_inverse_all_test_unet.sh
+```
+
 
 ## Regression Experiments
 
@@ -240,11 +204,12 @@ Regression/outputs/
 - A paradigm shift from Neural Processes, a principled Bayesian framework for general stochastic process regression. 
 - FAPS is a generic posterior sampling algorithm for both function-space and finite-dimensional (standard) flow matching prior. We recommend using U-Net based prior (by default) if the resolution is fixed.
 - With dense observations, you can set rank=0 to inject white noise during Langevin steps. (UNet prior is recommended)
+- When use differential PDE solver as the surrogate, which is sensitive to initialization, FAPS is much more stable than Diffusion-based posterior sampling method.
 
 ## Notes
 - Check shell scripts before long runs; they set GPU devices, checkpoint names, and dataset paths.
 - Checkpoints and datasets are intentionally ignored by Git and should be downloaded from Hugging Face.
-
+- FAPS is robust to a very wide range of hyperparameters, the same configuration can be used for different setting 
 
 
 ## Reference 
