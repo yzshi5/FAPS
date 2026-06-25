@@ -5,8 +5,10 @@
 By Yaozhong Shi, Zachary E. Ross and Yisong Yue
 
 ## Model architecture 
+![image](figs/overview.png)
 
-## Functional regression 
+## Stochastic-Process regression 
+![image](figs/Functional Regression.png)
 
 ## PDE inverse 
 
