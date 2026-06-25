@@ -95,26 +95,46 @@ To download test files only:
 python datasets/download_dataset.py all --test --output-dir datasets/PDE_inverse
 ```
 
-The functional regression dataest is based on  https://huggingface.co/datasets/Yaozhong/MINO , the Blackhole dataset can download from https://github.com/devzhk/InverseBench.
+The functional regression dataest is based on https://github.com/yzshi5/MINO
 
 The PDE inverse datasets are provided by : https://github.com/jhhuangchloe/DiffusionPDE and https://github.com/neuraloperator/FunDPS
 
 ## Quick Test 
 
-To reproduce the results of GP regression, first download the checkpoint for the prior. Then run : 
+To reproduce the results of GP regression, first download the checkpoint for the prior ``Regression/checkpoints/FAPS_prior/GP_matern_epoch_500.p`` 
+
+place it under ``Regression`` folder, then run : 
 
 ```bash
 cd Regression
 bash scripts/eval_GP_matern_reg.sh
 ```
 
-To reproduce the results of Darcy Flow PDE inverse, first download checkpoints for prior and PDE surrogate and small prepared test dataset. 
-Then run 
+To reproduce the results of Darcy Flow PDE inverse with FNO prior (used for OFM), first download checkpoints for prior and PDE surrogate 
+
+``PDE_inverse/checkpoints/FAPS_prior/FNO/darcy_fno_prior_100.pt`` 
+
+``PDE_inverse/checkpoints/PDE_surrogate/darcy_forward.pt``  
+
+Then download the small prepared test dataset. 
+
+``PDE_inverse/checkpoints/datasets/darcy/darcy_pde_test_200.npy``
+
+Finally run: 
 
 ```bash
 cd PDE_inverse
 bash scripts/eval_darcy_inverse.sh
 ```
+
+To apply FAPS for finite-dimensional Flow Matching prior (UNet prior), download the UNet prior and then run 
+
+```bash
+cd PDE_inverse
+bash scripts/eval_darcy_inverse_unet.sh
+```
+
+We also provide checkpoints for other PDE inverse problem, repeat the above steps to run on different PDE inverse problem
 
 ## Run FAPS for Functional Regression 
 
