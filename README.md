@@ -14,7 +14,7 @@ By Yaozhong Shi, Zachary E. Ross and Yisong Yue
 ![image](figs/PDEinv.png)
 
 
-## Setup and quick test 
+## Setup
 
 To set up the environment, create a conda environment
 
@@ -32,9 +32,10 @@ conda activate faps
 
 Some MINO/weather experiments also require the MINO model utilities included in this repo.
 
+## Datasets and Checkpoints 
+
 Checkpoints and small prepared datasets are stored on Hugging Face:
 
-## Datasets and Checkpoints 
 ```text
 https://huggingface.co/Yaozhong/FAPS
 ```
@@ -94,14 +95,15 @@ python datasets/download_dataset.py all --test --output-dir datasets/PDE_inverse
 ```
 ## Quick Test 
 
-To reproduce the results of GP regression, first download, then simplify 
+To reproduce the results of GP regression, first download the checkpoint for the prior. Then run : 
 
 ```bash
 cd Regression
 bash scripts/eval_GP_matern_reg.sh
 ```
 
-To reproduce the results of Darcy Flow PDE inverse, first download, then simplify 
+To reproduce the results of Darcy Flow PDE inverse, first download checkpoints for prior and PDE surrogate and small prepared test dataset. 
+Then run 
 
 ```bash
 cd PDE_inverse
@@ -109,6 +111,24 @@ bash scripts/eval_darcy_inverse.sh
 ```
 
 ## Run FAPS for Functional Regression 
+
+To run FAPS for functional regression, we just need to train a prior. Let's take GP matern case as an example
+
+```bash
+cd Regression
+```
+
+Train priors:
+
+```bash
+bash scripts/train_GP_matern_prior.sh
+```
+
+Evaluate regression tasks:
+
+```bash
+bash scripts/eval_GP_matern_reg.sh
+```
 
 
 ## Run FAPS for PDE Inverse 
@@ -158,7 +178,7 @@ bash scripts/eval_darcy_inverse_sup.sh
 ```
 #### 4. Reproduce the reported performance 
 
-We need to run FAPS over the entire test datasets, each test dataset in the paper contains 100 test cases. 
+We need to run FAPS over entire test datasets, each test dataset in the paper contains 100 test cases. 
 
 ```bash
 bash scripts_metrics/eval_darcy_inverse_all_test.sh
@@ -166,39 +186,6 @@ bash scripts_metrics/eval_darcy_inverse_all_test_unet.sh
 ```
 
 
-## Regression Experiments
-
-Run these commands from:
-
-```bash
-cd Regression
-```
-
-Train priors:
-
-```bash
-bash scripts/train_GP_matern_prior.sh
-bash scripts/train_GP_gibbs_prior.sh
-bash scripts/train_ns_prior.sh
-bash scripts/train_bh_prior.sh
-bash scripts/train_weather_prior.sh
-```
-
-Evaluate regression tasks:
-
-```bash
-bash scripts/eval_GP_matern_reg.sh
-bash scripts/eval_GP_gibbs_reg.sh
-bash scripts/eval_ns_reg.sh
-bash scripts/eval_bh_reg.sh
-bash scripts/eval_weather_reg.sh
-```
-
-Regression outputs are written under:
-
-```text
-Regression/outputs/
-```
 
 ## Comments 
 - A paradigm shift from Neural Processes, a principled Bayesian framework for general stochastic process regression. 
