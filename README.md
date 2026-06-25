@@ -4,24 +4,19 @@
 
 By Yaozhong Shi, Zachary E. Ross and Yisong Yue
 
-## Model architecture 
+## Model Architecture 
 ![image](figs/overview.png)
 
-## Stochastic-Process regression 
+## Stochastic-Process Regression 
 ![image](figs/Regression.png)
 
-## PDE inverse 
-![image](figs/PDE_inverse.png)
+## PDE Inverse 
+![image](figs/PDEinv.png)
 
-Large checkpoints and prepared datasets are stored on Hugging Face:
 
-```text
-https://huggingface.co/Yaozhong/FAPS
-```
+## Setup and quick test 
 
-This GitHub repository contains the training/evaluation code and shell scripts.
-
-## Setup
+To set up the environment, create a conda environment
 
 ```bash
 # clone project
@@ -37,8 +32,12 @@ conda activate faps
 
 Some MINO/weather experiments also require the MINO model utilities included in this repo.
 
-## Download Artifacts
+Checkpoints and small prepared datasets are stored on Hugging Face:
 
+## Datasets and Checkpoints 
+```text
+https://huggingface.co/Yaozhong/FAPS
+```
 The scripts expect checkpoints and small prepared test datasets under the repository tree, for example:
 
 ```text
@@ -66,6 +65,17 @@ snapshot_download(
 )
 PY
 ```
+## Quick Test 
+
+To reproduce, simplify run download the... 
+
+
+## Run FAPS for Functional Regression 
+
+
+## Run FAPS for PDE Inverse 
+
+
 
 For the original PDE train/test data, you can also use:
 
@@ -235,3 +245,14 @@ Regression/outputs/
 ```bash
 bash upload_faps_artifacts.sh
 ```
+
+## Reference 
+If you find this repository useful for your research, please consider citing our work
+```bibtex
+@article{shi2026flow,
+  title={Flow Annealing Posterior Sampling for Function-Space Regression and Inverse Problems},
+  author={Shi, Yaozhong and Ross, Zachary E and Yue, Yisong},
+  journal={arXiv preprint arXiv:2606.22346v1},
+  year={2026}
+}
+
