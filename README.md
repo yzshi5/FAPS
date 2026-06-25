@@ -34,6 +34,7 @@ Some MINO/weather experiments also require the MINO model utilities included in 
 
 ## Datasets and Checkpoints 
 
+
 Checkpoints and small prepared datasets are stored on Hugging Face:
 
 ```text
@@ -93,6 +94,11 @@ To download test files only:
 ```bash
 python datasets/download_dataset.py all --test --output-dir datasets/PDE_inverse
 ```
+
+The functional regression dataest is based on  https://huggingface.co/datasets/Yaozhong/MINO , the Blackhole dataset can download from https://github.com/devzhk/InverseBench.
+
+The PDE inverse datasets are provided by : https://github.com/jhhuangchloe/DiffusionPDE and https://github.com/neuraloperator/FunDPS
+
 ## Quick Test 
 
 To reproduce the results of GP regression, first download the checkpoint for the prior. Then run : 
