@@ -236,15 +236,16 @@ Regression outputs are written under:
 Regression/outputs/
 ```
 
-## Notes
+## Comments 
+- A paradigm shift from Neural Processes, a principled Bayesian framework for general stochastic process regression. 
+- FAPS is a generic posterior sampling algorithm for both function-space and finite-dimensional (standard) flow matching prior. We recommend using U-Net based prior (by default) if the resolution is fixed.
+- With dense observations, you can set rank=0 to inject white noise during Langevin steps. (UNet prior is recommended)
 
+## Notes
 - Check shell scripts before long runs; they set GPU devices, checkpoint names, and dataset paths.
 - Checkpoints and datasets are intentionally ignored by Git and should be downloaded from Hugging Face.
-- If you upload refreshed artifacts to Hugging Face, use:
 
-```bash
-bash upload_faps_artifacts.sh
-```
+
 
 ## Reference 
 If you find this repository useful for your research, please consider citing our work
