@@ -67,6 +67,7 @@ snapshot_download(
 )
 PY
 ```
+You can also manually download the entire huggingface repo if you want. 
 
 For the original PDE train/test data, you can also use:
 
