@@ -8,9 +8,10 @@ By Yaozhong Shi, Zachary E. Ross and Yisong Yue
 ![image](figs/overview.png)
 
 ## Stochastic-Process regression 
-![image](figs/Functional Regression.png)
+![image](figs/Regression.png)
 
 ## PDE inverse 
+![image](figs/PDE_inverse.png)
 
 Large checkpoints and prepared datasets are stored on Hugging Face:
 
