@@ -2,6 +2,13 @@
 # Flow Annealing Posterior Sampling for Function-Space Regression and Inverse Problems
 ### [FAPS Paper](https://arxiv.org/abs/2606.22346)
 
+By Yaozhong Shi, Zachary E. Ross and Yisong Yue
+
+## Model architecture 
+
+## Functional regression 
+
+## PDE inverse 
 
 Large checkpoints and prepared datasets are stored on Hugging Face:
 
