@@ -35,7 +35,9 @@ Some MINO/weather experiments also require the MINO model utilities included in 
 ## Datasets and Checkpoints 
 
 
-Checkpoints and small prepared datasets are stored on Hugging Face:
+Checkpoints and small prepared datasets are stored on Hugging Face
+
+[FAPS checkpoints](https://huggingface.co/Yaozhong/FAPS)
 
 ```text
 https://huggingface.co/Yaozhong/FAPS
