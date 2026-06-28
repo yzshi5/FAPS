@@ -61,6 +61,7 @@ snapshot_download(
     repo_type="model",
     local_dir=".",
     allow_patterns=[
+        "config.json",
         "PDE_inverse/checkpoints/**",
         "PDE_inverse/datasets/**",
         "Regression/checkpoints/FAPS_prior/GP_gibbs_epoch_500.pt",
